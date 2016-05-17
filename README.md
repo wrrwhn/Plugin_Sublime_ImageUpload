@@ -26,7 +26,8 @@
 
 ## 快捷键
 - 点击 Preferences/ `Key Bindings - User`
-- 插入```
+- 插入
+```
 [
 	{ "keys": ["ctrl+alt+shift+v"], "command": "shoot_image_upload_markdown" }
 ]
