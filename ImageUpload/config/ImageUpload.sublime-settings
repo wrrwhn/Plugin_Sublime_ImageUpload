@@ -1,0 +1,9 @@
+{
+	"access_key": "DraImie8qSbwoPoyrHV38lfTnVr9aj8S487egGsC",
+	"secret_key" : "62PYqPKVBwFIHvObxdrzeRcqB7Ep_ufpqTXLZ_8b",
+	"def_host": "http://7xsy59.com1.z0.glb.clouddn.com/",
+	"bucket_name" : "image"
+}
+
+// s : sublime.load_settings("ImageUpload.sublime-settings")
+// current : s.get("font_size", 10)
