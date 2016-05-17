@@ -41,13 +41,13 @@ def mkFormatFullScreen():
 
 
 # class for sublime
-class ShootImageUploadCommand(sublime_plugin.TextCommand):
+class ScreenShotUploadCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		formatUrl= mkFormatShootImage()
 		sublime.set_clipboard(formatUrl)
 		self.view.insert(edit, self.view.sel()[0].begin(), formatUrl)
 
-class ShootImageUploadMarkdownCommand(sublime_plugin.TextCommand):
+class ScreenShotUploadMarkdownCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		formatUrl= mkFormatShootImage()
 		sublime.set_clipboard(formatUrl)

@@ -29,7 +29,7 @@
 - 插入
 ```
 [
-	{ "keys": ["ctrl+alt+shift+v"], "command": "shoot_image_upload_markdown" }
+	{ "keys": ["ctrl+alt+shift+v"], "command": "screen_shot_upload_markdown" }
 ]
 ```
 
