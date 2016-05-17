@@ -2,11 +2,11 @@
 # 功能描述
 - 流程
 	- 使用截图工具截图
-	- 切换至 sublime 3，并操作快捷键 [ctrl+ shift+ alt+ v]
+	- 切换至 sublime 3，并操作快捷键 **[ctrl+ shift+ alt+ v]**
 	- 当前焦点处插入 `![fileName.png](qiniu.url/fileName.png)`
 	- 并于剪贴板中插入文本 `qiniu.url/fileName.png`
 - 限制
-	- 限于 Windows 平台
+	- **限于 Windows 平台**
 
 
 # 使用
