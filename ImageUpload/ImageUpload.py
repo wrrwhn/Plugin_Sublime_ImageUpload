@@ -5,68 +5,35 @@ import sublime, sublime_plugin
 # import user-code
 
 # method
-def mkFormatShootImage():
-	import os
+def mkFormatImage(path):
 	import sys
 	sys.path.append(r'D:\server\python\Python33\Lib\site-packages')
 	sys.path.append(r'C:\Users\Yao\AppData\Roaming\Sublime Text 3\Packages\ImageUpload')
 	sys.path.append(r'C:\Users\Yao\AppData\Roaming\Sublime Text 3\Packages\ImageUpload\utils')
 
-	from ImageUpload.utils.clipboard import getClipboardImage
+	from ImageUpload.utils.commonUtils import checkImage	
 	import ImageUpload.utils.upload as uploader
+	path= checkImage(path)
+	qiniu_url= 'None'
 
-	tmp_path= getClipboardImage()
-	if tmp_path:
-		qiniu_url= uploader.upload(tmp_path, is_delete= True)
-		return qiniu_url
-	else:
-		return 'None'
+	if not path:
+		from ImageUpload.utils.clipboard import getClipboardImage
+		path= getClipboardImage()
 
-def mkFormatFullScreen():
-	import os
-	import sys
-	sys.path.append(r'D:\server\python\Python33\Lib\site-packages')
-	sys.path.append(r'C:\Users\Yao\AppData\Roaming\Sublime Text 3\Packages\ImageUpload')
-	sys.path.append(r'C:\Users\Yao\AppData\Roaming\Sublime Text 3\Packages\ImageUpload\utils')
+	if path:
+		qiniu_url= uploader.upload(path, is_delete= True)
 
-	from ImageUpload.utils.clipboard import saveScreenShoot
-	import ImageUpload.utils.upload as uploader
+	return qiniu_url
 
-	tmp_path= saveScreenShoot()
-	if tmp_path:
-		qiniu_url= uploader.upload(tmp_path, is_delete= True)
-		return qiniu_url
-	else:
-		return 'None'
 
 
 # class for sublime
-class ScreenShotUploadCommand(sublime_plugin.TextCommand):
-	def run(self, edit):
-		formatUrl= mkFormatShootImage()
-		sublime.set_clipboard(formatUrl)
-		self.view.insert(edit, self.view.sel()[0].begin(), formatUrl)
-
 class ScreenShotUploadMarkdownCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
-		formatUrl= mkFormatShootImage()
+		path= sublime.get_clipboard()
+		formatUrl= mkFormatImage(path)
 		sublime.set_clipboard(formatUrl)
 		if formatUrl:
 			from ImageUpload.utils.format import format_markdown_img
 			formatUrl= format_markdown_img(formatUrl)
-		self.view.insert(edit, self.view.sel()[0].begin(), formatUrl)
-
-class FullScreenUploadCommand(sublime_plugin.TextCommand):
-	def run(self, edit):
-		formatUrl= mkFormatFullScreen()
-		sublime.set_clipboard(formatUrl)
-		self.view.insert(edit, self.view.sel()[0].begin(), formatUrl)
-
-class FullScreenUploadMarkdownCommand(sublime_plugin.TextCommand):
-	def run(self, edit):
-		formatUrl= mkFormatFullScreen()
-		if formatUrl:
-			from ImageUpload.utils.format import format_markdown_img
-			formatUrl= format_markdown_img(formatUrl)
-		sublime.set_clipboard(formatUrl)
 		self.view.insert(edit, self.view.sel()[0].begin(), formatUrl)
